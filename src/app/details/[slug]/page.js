@@ -7,12 +7,12 @@ export default async function DetailPage({ params }) {
   if (!product) {
     return (
       <div className="flex flex-col items-center justify-center h-screen">
-        <h1 className="text-3xl font-bold mb-4">Product Not Found</h1>
+        <h1 className="text-3xl font-bold mb-4">Producto no encontrado</h1>
         <p className="text-lg mb-2">
-          The product you are looking for does not exist.
+          El producto que estás buscando no existe.
         </p>
         <Link href="/products/all" className="text-blue-500 hover:underline">
-          Go back to Products
+          Volver a Productos
         </Link>
       </div>
     );

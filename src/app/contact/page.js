@@ -10,8 +10,14 @@ export function generateMetaData({ params, searchParams }, parent) {
 
 export default function ContactPage() {
   return (
-    <>
-      <h1>Contacto</h1>
-    </>
+    <div className="flex flex-col items-center justify-center">
+      <h1 className="text-3xl font-bold underline text-center mt-10">
+        Contactanos
+      </h1>
+      <p className="text-lg mb-2">
+        Si tienes alguna pregunta o inquietud, no dudes en contactarnos. Estamos
+        para ayudarte.
+      </p>
+    </div>
   );
 }
