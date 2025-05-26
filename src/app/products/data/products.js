@@ -1,0 +1,38 @@
+export const productsDB = [
+  {
+    id: 1,
+    name: "Producto 1",
+    slug: "producto-1",
+    description: "Descripción del producto 1",
+    price: 100,
+    image: "/images/product1.jpg",
+    category: "remeras",
+  },
+  {
+    id: 2,
+    name: "Producto 2",
+    slug: "producto-2",
+    description: "Descripción del producto 2",
+    price: 200,
+    image: "/images/product2.jpg",
+    category: "pantalones",
+  },
+  {
+    id: 3,
+    name: "Producto 3",
+    slug: "producto-3",
+    description: "Descripción del producto 3",
+    price: 300,
+    image: "/images/product3.jpg",
+    category: "zapatillas",
+  },
+  {
+    id: 4,
+    name: "Producto 4",
+    slug: "producto-4",
+    description: "Descripción del producto 4",
+    price: 400,
+    image: "/images/product4.jpg",
+    category: "camperas",
+  },
+];
