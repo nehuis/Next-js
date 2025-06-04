@@ -13,7 +13,7 @@ export function DetailCard({ product }) {
 
   return (
     <div className="flex flex-col items-center justify-center mt-10 ">
-      <div className="bg-slate-600 rounded-lg p-10 max-w-lg flex flex-col items-center">
+      <div className="bg-orange-500 rounded-lg p-10 max-w-lg flex flex-col items-center">
         <img
           src={product.image}
           alt={product.name}
@@ -27,13 +27,10 @@ export function DetailCard({ product }) {
 
           <p className="text-lg text-center">{product.description}</p>
           <p className="text-lg font-bold mt-2">${product.price}</p>
-          <span className="text-sm text-gray-400 mt-2">
-            Category: {product.category}
-          </span>
 
           <button
             onClick={handleAdd}
-            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+            className="mt-4 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 cursor-pointer text-white rounded"
           >
             Comprar
           </button>
@@ -42,7 +39,7 @@ export function DetailCard({ product }) {
 
       <Link
         href="/products/all"
-        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+        className="mt-4 px-4 py-2 bg-cyan-500 text-white rounded"
       >
         Regresar a la página de productos
       </Link>

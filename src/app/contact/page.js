@@ -48,20 +48,17 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <h1 className="text-3xl font-bold underline text-center mt-10">
-        Contactános
-      </h1>
+    <div className="flex flex-col items-center justify-center text-center">
+      <h1 className="text-3xl font-bold text-center mt-10">Contactános</h1>
       <p className="mt-4 text-lg max-w-md text-center">
         Si tienes alguna pregunta o inquietud, no dudes en ponerte en contacto
-        con nosotros. Estamos aquí para ayudarte y asegurarnos de que tengas la
-        mejor experiencia posible. Puedes enviarnos un correo electrónico a{" "}
-        <a href="mailto:ecommerce@gmail.com" className="text-blue-500">
-          ecommerce@gmail.com
+        con nosotros. Puedes enviarnos un correo electrónico a{" "}
+        <a href="mailto:OffBeat@gmail.com" className="text-blue-500">
+          OffBeat@gmail.com
         </a>
       </p>
 
-      <form onSubmit={handleSubmit} className="mt-6 w-full max-w-md">
+      <form onSubmit={handleSubmit} className="mt-6 w-full max-w-md ">
         <h2 className="text-xl font-semibold mb-4">Envíanos un mensaje</h2>
         <div className="mt-6">
           <label
@@ -98,7 +95,7 @@ export default function ContactPage() {
           ></textarea>
           <button
             type="submit"
-            className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            className="mt-4 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-cyan-500 hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer"
           >
             Enviar Mensaje
           </button>

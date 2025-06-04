@@ -29,31 +29,31 @@ export default async function CategoryPage({ params }) {
     <div className="flex flex-col items-center justify-center">
       <div className="flex flex-wrap justify-center mt-4">
         <Link
-          className="bg-violet-700 text-white px-4 py-2 rounded m-2"
+          className="bg-orange-500 hover:bg-cyan-500 text-white px-4 py-2 rounded m-2"
           href={"/products/all"}
         >
           Todos
         </Link>
         <Link
-          className="bg-violet-700 text-white px-4 py-2 rounded m-2"
+          className="bg-orange-500 hover:bg-cyan-500 text-white px-4 py-2 rounded m-2"
           href={"/products/remeras"}
         >
           Remeras
         </Link>
         <Link
-          className="bg-violet-700 text-white px-4 py-2 rounded m-2"
+          className="bg-orange-500 hover:bg-cyan-500 text-white px-4 py-2 rounded m-2"
           href={"/products/pantalones"}
         >
           Pantalones
         </Link>
         <Link
-          className="bg-violet-700 text-white px-4 py-2 rounded m-2"
+          className="bg-orange-500 hover:bg-cyan-500 text-white px-4 py-2 rounded m-2"
           href={"/products/zapatillas"}
         >
           Zapatillas
         </Link>
         <Link
-          className="bg-violet-700 text-white px-4 py-2 rounded m-2"
+          className="bg-orange-500 hover:bg-cyan-500 text-white px-4 py-2 rounded m-2"
           href={"/products/camperas"}
         >
           Camperas

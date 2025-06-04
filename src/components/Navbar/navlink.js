@@ -9,11 +9,11 @@ export function Navlink({ name, href }) {
     <li className="w-full" key={name}>
       <Link
         href={href}
-        className={`block py-2 px-3 text-white hover:bg-blue-800  rounded-sm  md:p-0 dark:text-white
+        className={`block py-2 px-3 text-white hover:bg-orange-500 rounded-sm md:p-0 dark:text-white
           ${
             pathname === href
-              ? "bg-blue-800 text-white md:bg-blue-950 md:hover:bg-blue-800 md:p-2"
-              : "text-gray-900 md:bg-transparent md:hover:text-blue-700 md:hover:bg-transparent"
+              ? "bg-orange-500 text-white md:bg-orange-500 block justify-self-center md:hover:bg-orange-600 md:p-2"
+              : "text-orange-500 md:bg-transparent md:hover:text-orange-500 md:hover:bg-transparent"
           }
           `}
       >
