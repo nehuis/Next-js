@@ -2,6 +2,26 @@ import Image from "next/image";
 import Link from "next/link";
 import { DetailCard } from "../../components/DetailCard";
 
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+
+  const res = await fetch(`http://localhost:3000/api/product/${id}`);
+  const product = await res.json();
+
+  if (!product) {
+    return {
+      title: "Producto no encontrado",
+      description: "El producto que estás buscando no existe.",
+    };
+  }
+
+  return {
+    title: product.name,
+    description: product.description,
+    keywords: `${product.name}, ${product.category}, ${product.price}`,
+  };
+}
+
 export default async function DetailPage({ params }) {
   const { id } = await params;
 

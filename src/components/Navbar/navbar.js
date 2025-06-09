@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useState } from "react";
 import { Navlink } from "./navlink";
+import Link from "next/link";
+import { CartIcon } from "@/src/app/cart/cart-icon/page";
 
 export function Navbar() {
   const links = [
@@ -26,25 +28,22 @@ export function Navbar() {
             width={150}
             height={50}
           />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+          <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
             OffBeat
           </span>
         </div>
+
         <button
-          data-collapse-toggle="navbar-default"
           type="button"
-          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-          aria-controls="navbar-default"
-          aria-expanded={isOpen}
+          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-100 rounded-lg md:hidden hover:bg-cyan-600 focus:outline-none focus:ring-2 focus:ring-gray-200"
           onClick={() => setIsOpen(!isOpen)}
         >
-          <span className="sr-only">Open main menu</span>
+          <span className="sr-only">Abrir menú</span>
           <svg
             className="w-5 h-5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 17 14"
+            xmlns="http://www.w3.org/2000/svg"
           >
             <path
               stroke="currentColor"
@@ -55,6 +54,7 @@ export function Navbar() {
             />
           </svg>
         </button>
+
         <div
           className={`w-full md:block md:w-auto ${!isOpen && "hidden"}`}
           id="navbar-default"
@@ -65,18 +65,11 @@ export function Navbar() {
             ))}
 
             <li>
-              <a
-                href="#"
-                className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-whitedark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-              >
-                <Image
-                  alt="cart"
-                  src="/cart.svg"
-                  className="cart"
-                  width={150}
-                  height={50}
-                />
-              </a>
+              <Link
+                href="/cart"
+                className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              ></Link>
+              <CartIcon />
             </li>
           </ul>
         </div>

@@ -2,15 +2,9 @@
 
 import { useCartContext } from "@/src/context/CartContext";
 import Link from "next/link";
+import { Counter } from "./Counter";
 
 export function DetailCard({ product }) {
-  const { addToCart } = useCartContext();
-
-  const handleAdd = () => {
-    addToCart(product);
-    alert("Producto agregado");
-  };
-
   return (
     <div className="flex flex-col items-center justify-center mt-10 ">
       <div className="bg-orange-500 rounded-lg p-10 max-w-lg flex flex-col items-center">
@@ -28,12 +22,7 @@ export function DetailCard({ product }) {
           <p className="text-lg text-center">{product.description}</p>
           <p className="text-lg font-bold mt-2">${product.price}</p>
 
-          <button
-            onClick={handleAdd}
-            className="mt-4 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 cursor-pointer text-white rounded"
-          >
-            Comprar
-          </button>
+          <Counter product={product} />
         </div>
       </div>
 

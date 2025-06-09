@@ -4,7 +4,7 @@ import { db } from "@/src/firebase/config";
 import { DATABASES } from "@/src/firebase/databases";
 
 export async function GET(request, { params }) {
-  const { category } = params;
+  const { category } = await params;
 
   const productsRef = collection(db, DATABASES.PRODUCTS);
 

@@ -19,7 +19,7 @@ export function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-4 w-full max-w-sm mx-auto"
+      className="flex flex-col gap-4 w-full max-w-sm mx-auto mb-10"
     >
       <input
         type="email"
