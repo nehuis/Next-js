@@ -3,19 +3,20 @@
 import Link from "next/link";
 import { useState } from "react";
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+
 export function ProductsTable({ products }) {
   const [filteredProducts, setFilteredProducts] = useState(products.products);
 
   const handleDelete = async (id) => {
-    const response = await fetch(`http://localhost:3000/api/product/${id}`, {
+    const response = await fetch(`${BASE_URL}/api/product/${id}`, {
       method: "DELETE",
     });
     const result = await response.json();
 
     if (response.ok) {
-      console.log("Product deleted successfully:", result);
-      setFilteredProducts((prevProducts) =>
-        prevProducts.filter((product) => product.id !== id)
+      setFilteredProducts((prev) =>
+        prev.filter((product) => product.id !== id)
       );
     } else {
       console.error("Error deleting product:", result.error);
@@ -89,7 +90,7 @@ export function ProductsTable({ products }) {
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                 <Link
-                  href={`http://localhost:3000/admin/edit/${product.id}`}
+                  href={`/admin/edit/${product.id}`}
                   className="text-blue-600 hover:text-blue-900"
                 >
                   Edit

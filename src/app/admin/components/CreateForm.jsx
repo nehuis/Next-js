@@ -3,6 +3,8 @@
 import { handleChange } from "@/src/utils/handleChange";
 import { useEffect, useState } from "react";
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+
 export function CreateForm({ id = null }) {
   const [data, setData] = useState({
     name: "",
@@ -23,8 +25,6 @@ export function CreateForm({ id = null }) {
       stock: parseInt(prevData.stock),
     }));
 
-    console.log("Submitting data:", data);
-
     if (!data.name || !data.slug || !data.description) {
       alert("Por favor, completa todos los campos obligatorios");
       return;
@@ -43,42 +43,27 @@ export function CreateForm({ id = null }) {
       return;
     }
 
-    if (id) {
-      const response = await fetch(`http://localhost:3000/api/product/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+    const method = id ? "PUT" : "POST";
+    const url = id
+      ? `${BASE_URL}/api/product/${id}`
+      : `${BASE_URL}/api/products`;
 
-      if (!response.ok) {
-        const error = await response.json();
-        console.error("Error updating product:", error);
-        return;
-      }
+    const response = await fetch(url, {
+      method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
 
-      const result = await response.json();
+    if (!response.ok) {
+      const error = await response.json();
+      console.error("Error:", error);
+      return;
+    }
 
-      console.log("Product updated successfully:", result);
-    } else {
-      const response = await fetch("http://localhost:3000/api/products", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+    const result = await response.json();
+    console.log("Success:", result);
 
-      if (!response.ok) {
-        const error = await response.json();
-        console.error("Error creating product:", error);
-        return;
-      }
-
-      const result = await response.json();
-
-      console.log("Product created successfully:", result);
+    if (!id) {
       setData({
         name: "",
         slug: "",
@@ -86,14 +71,14 @@ export function CreateForm({ id = null }) {
         price: 0,
         stock: 0,
         category: "",
-        imageUrl: "",
+        image: "",
       });
     }
   };
 
   useEffect(() => {
     if (id) {
-      fetch(`http://localhost:3000/api/product/${id}`)
+      fetch(`${BASE_URL}/api/product/${id}`)
         .then((res) => res.json())
         .then((product) => {
           if (product) {
