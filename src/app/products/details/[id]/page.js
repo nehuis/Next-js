@@ -5,7 +5,9 @@ import { DetailCard } from "../../components/DetailCard";
 export async function generateMetadata({ params }) {
   const { id } = await params;
 
-  const res = await fetch(`http://localhost:3000/api/product/${id}`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/product/${id}`
+  );
   const product = await res.json();
 
   if (!product) {
@@ -25,7 +27,9 @@ export async function generateMetadata({ params }) {
 export default async function DetailPage({ params }) {
   const { id } = await params;
 
-  const res = await fetch(`http://localhost:3000/api/product/${id}`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/product/${id}`
+  );
   const product = await res.json();
 
   console.log(product);
