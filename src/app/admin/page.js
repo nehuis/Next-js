@@ -1,9 +1,9 @@
 import { ProductsTable } from "./components/ProductTable";
 
 export default async function AdminPage() {
-  const products = await fetch("http://localhost:3000/api/products/all").then(
-    (res) => res.json()
-  );
+  const products = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/all`
+  ).then((res) => res.json());
   return (
     <>
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
