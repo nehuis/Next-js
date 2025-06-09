@@ -1,17 +1,32 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { ProductCard } from "./ProductCard";
 
-export async function ProductList({ category }) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+export function ProductList({ category }) {
+  const [products, setProducts] = useState([]);
+  const [error, setError] = useState(null);
 
-  const res = await fetch(`${baseUrl}/api/products/${category}`, {
-    cache: "no-store",
-  });
+  useEffect(() => {
+    fetch(`/api/products/${category}`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Error al cargar productos");
+        return res.json();
+      })
+      .then((data) => setProducts(data.products || []))
+      .catch((err) => {
+        console.error(err);
+        setError("No se pudieron cargar los productos.");
+      });
+  }, [category]);
 
-  const { products } = await res.json();
+  if (error) {
+    return <p className="text-red-500">{error}</p>;
+  }
 
   return (
     <>
-      {products && products.length ? (
+      {products.length ? (
         products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))

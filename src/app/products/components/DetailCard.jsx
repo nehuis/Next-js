@@ -1,6 +1,5 @@
 "use client";
 
-import { useCartContext } from "@/src/context/CartContext";
 import Link from "next/link";
 import { Counter } from "./Counter";
 

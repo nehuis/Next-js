@@ -12,15 +12,6 @@ export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
   const [productCounters, setProductCounters] = useState({});
 
-  useEffect(() => {
-    const storedCart = localStorage.getItem("cart");
-    if (storedCart) setCart(JSON.parse(storedCart));
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
-
   const addToCart = (product) => {
     const quantity = productCounters[product.id] || 1;
 
