@@ -4,20 +4,25 @@ import { doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import { NextResponse } from "next/server";
 
 export async function GET(request, { params }) {
-  const { id } = await params;
+  const { id } = params;
 
   const productRef = doc(db, DATABASES.PRODUCTS, id);
-
   const productSnapshot = await getDoc(productRef);
 
-  console.log(productSnapshot.data());
+  const productData = productSnapshot.data();
+
+  if (!productSnapshot.exists() || !productData) {
+    return NextResponse.json(
+      { error: "Producto no encontrado" },
+      { status: 404 }
+    );
+  }
 
   return NextResponse.json({
     id: productSnapshot.id,
-    ...productSnapshot.data(),
+    ...productData,
   });
 }
-
 export async function PUT(request, { params }) {
   const { id } = await params;
   const data = await request.json();
