@@ -26,36 +26,28 @@ export async function generateMetadata({ params }) {
 
 export default async function DetailPage({ params }) {
   const { id } = params;
+
+  // Importante: obtener la URL base correctamente
   const host = headers().get("host");
   const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
 
-  const res = await fetch(`${protocol}://${host}/api/product/${id}`);
+  let product = null;
 
-  if (!res.ok) {
-    return (
-      <div className="flex flex-col items-center justify-center mt-10 ">
-        <div className="bg-slate-600 rounded-lg p-10 max-w-lg flex flex-col items-center">
-          <div className="flex flex-col items-center justify-center gap-5">
-            <h3 className="text-2xl font-bold text-center">
-              Producto no encontrado
-            </h3>
-            <p className="text-lg text-center">
-              El producto que estás buscando no existe.
-            </p>
-          </div>
-        </div>
+  try {
+    const res = await fetch(`${protocol}://${host}/api/product/${id}`, {
+      cache: "no-store",
+    });
 
-        <Link
-          href="/products/all"
-          className="mt-4 px-4 py-2 bg-pink-500 text-white rounded"
-        >
-          Regresar a la página principal
-        </Link>
-      </div>
-    );
+    if (!res.ok) {
+      console.error(`Error al buscar el producto con id ${id}:`, res.status);
+      return notFound();
+    }
+
+    product = await res.json();
+  } catch (error) {
+    console.error("Error al obtener producto:", error);
+    return notFound();
   }
-
-  const product = await res.json();
 
   return <DetailCard product={product} />;
 }
