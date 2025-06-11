@@ -1,14 +1,13 @@
 import { DATABASES } from "@/src/firebase/databases";
 import { NextResponse } from "next/server";
 import { doc, setDoc } from "firebase/firestore";
-import { db } from "@/src/firebase/config"; // asegurate que esté bien importado
+import { db } from "@/src/firebase/config";
 
 export async function POST(request) {
   try {
     const body = await request.json();
     const { name, slug, description, price, stock, image, category } = body;
 
-    // Validaciones
     if (!name || !slug || !description) {
       return NextResponse.json(
         { error: "Por favor, completa todos los campos obligatorios" },

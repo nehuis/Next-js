@@ -8,7 +8,10 @@ export default function AdminPage() {
   useEffect(() => {
     fetch("/api/products/all")
       .then((res) => res.json())
-      .then((data) => setProducts(data))
+      .then((data) => {
+        console.log("Productos recibidos:", data);
+        setProducts(data);
+      })
       .catch((err) => console.error("Error al hacer fetch:", err));
   }, []);
 
