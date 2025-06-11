@@ -6,7 +6,7 @@ import { useState } from "react";
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
 export function ProductsTable({ products }) {
-  const [filteredProducts, setFilteredProducts] = useState(products || []);
+  const [filteredProducts, setFilteredProducts] = useState(products);
 
   const handleDelete = async (id) => {
     const response = await fetch(`${BASE_URL}/api/product/${id}`, {
