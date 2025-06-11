@@ -1,7 +1,7 @@
-import { DATABASES } from "@/src/firebase/databases";
+import { DATABASES } from "@/firebase/databases";
 import { NextResponse } from "next/server";
 import { doc, setDoc } from "firebase/firestore";
-import { db } from "@/src/firebase/config";
+import { db } from "@/firebase/config";
 
 export async function POST(request) {
   try {

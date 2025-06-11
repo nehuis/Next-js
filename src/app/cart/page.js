@@ -1,6 +1,6 @@
 "use client";
 
-import { useCartContext } from "@/src/context/CartContext";
+import { useCartContext } from "@/context/CartContext";
 import Link from "next/link";
 import { toast } from "react-toastify";
 

@@ -1,4 +1,4 @@
-import Spinner from "@/src/components/spinner";
+import Spinner from "@/components/spinner";
 import Link from "next/link";
 import { Suspense } from "react";
 import { ProductList } from "../components/ProductList";

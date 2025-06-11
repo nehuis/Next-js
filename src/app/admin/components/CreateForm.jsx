@@ -1,6 +1,6 @@
 "use client";
 
-import { handleChange } from "@/src/utils/handleChange";
+import { handleChange } from "@/utils/handleChange";
 import { useEffect, useState } from "react";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";

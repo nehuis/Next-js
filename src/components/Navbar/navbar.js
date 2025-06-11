@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Navlink } from "./navlink";
 import Link from "next/link";
-import { CartIcon } from "@/src/app/cart/cart-icon/page";
+import { CartIcon } from "@/app/cart/cart-icon/page";
 
 export function Navbar() {
   const links = [

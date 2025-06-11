@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { DetailCard } from "../../components/DetailCard";
 import { headers } from "next/headers";
 

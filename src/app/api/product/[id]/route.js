@@ -1,29 +1,21 @@
-import { db } from "@/src/firebase/config";
-import { DATABASES } from "@/src/firebase/databases";
+import { db } from "@/firebase/config";
+import { DATABASES } from "@/firebase/databases";
 import { doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import { NextResponse } from "next/server";
 
-import { db } from "@/src/firebase/config";
-import { collection, getDocs } from "firebase/firestore";
-import { DATABASES } from "@/src/firebase/databases";
-import { NextResponse } from "next/server";
+export async function GET(request, { params }) {
+  const { id } = await params;
 
-export async function GET() {
-  try {
-    const querySnapshot = await getDocs(collection(db, DATABASES.PRODUCTS));
-    const products = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
+  const productRef = doc(db, DATABASES.PRODUCTS, id);
 
-    return NextResponse.json({ products });
-  } catch (error) {
-    console.error("Error al obtener productos:", error);
-    return NextResponse.json(
-      { error: "No se pudieron obtener los productos" },
-      { status: 500 }
-    );
-  }
+  const productSnapshot = await getDoc(productRef);
+
+  console.log(productSnapshot.data());
+
+  return NextResponse.json({
+    id: productSnapshot.id,
+    ...productSnapshot.data(),
+  });
 }
 
 export async function PUT(request, { params }) {
