@@ -1,6 +1,6 @@
 "use client";
 
-import { useAuthContext } from "@/src/context/AuthContext";
+import { useAuthContext } from "@/context/AuthContext";
 import Link from "next/link";
 
 export default function AdminLayout({ children, login }) {

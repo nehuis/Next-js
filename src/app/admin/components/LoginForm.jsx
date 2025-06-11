@@ -1,7 +1,7 @@
 "use client";
 
-import { useAuthContext } from "@/src/context/AuthContext";
-import { handleChange } from "@/src/utils/handleChange";
+import { useAuthContext } from "@/context/AuthContext";
+import { handleChange } from "@/utils/handleChange";
 import { useState } from "react";
 
 export function LoginForm() {
