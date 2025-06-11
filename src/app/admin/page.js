@@ -10,7 +10,7 @@ export default function AdminPage() {
       .then((res) => res.json())
       .then((data) => {
         console.log("Productos recibidos:", data);
-        setProducts(data);
+        setProducts(data.products);
       })
       .catch((err) => console.error("Error al hacer fetch:", err));
   }, []);

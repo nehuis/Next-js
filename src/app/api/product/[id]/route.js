@@ -3,26 +3,29 @@ import { DATABASES } from "@/src/firebase/databases";
 import { doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import { NextResponse } from "next/server";
 
-export async function GET(request, { params }) {
-  const { id } = params;
+import { db } from "@/src/firebase/config";
+import { collection, getDocs } from "firebase/firestore";
+import { DATABASES } from "@/src/firebase/databases";
+import { NextResponse } from "next/server";
 
-  const productRef = doc(db, DATABASES.PRODUCTS, id);
-  const productSnapshot = await getDoc(productRef);
+export async function GET() {
+  try {
+    const querySnapshot = await getDocs(collection(db, DATABASES.PRODUCTS));
+    const products = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
 
-  const productData = productSnapshot.data();
-
-  if (!productSnapshot.exists() || !productData) {
+    return NextResponse.json({ products });
+  } catch (error) {
+    console.error("Error al obtener productos:", error);
     return NextResponse.json(
-      { error: "Producto no encontrado" },
-      { status: 404 }
+      { error: "No se pudieron obtener los productos" },
+      { status: 500 }
     );
   }
-
-  return NextResponse.json({
-    id: productSnapshot.id,
-    ...productData,
-  });
 }
+
 export async function PUT(request, { params }) {
   const { id } = await params;
   const data = await request.json();
