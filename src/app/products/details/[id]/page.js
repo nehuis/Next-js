@@ -27,7 +27,6 @@ export async function generateMetadata({ params }) {
 export default async function DetailPage({ params }) {
   const { id } = params;
 
-  // Importante: obtener la URL base correctamente
   const host = headers().get("host");
   const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
 
