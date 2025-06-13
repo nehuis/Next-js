@@ -80,7 +80,7 @@ export function CreateForm({ id = null }) {
       return;
     }
 
-    toast.success("Producto creado" + data.name, {
+    toast.success(data.name + " creado/a con éxito", {
       position: "top-right",
       autoClose: 3000,
       transition: Bounce,
