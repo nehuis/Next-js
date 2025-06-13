@@ -20,13 +20,13 @@ export function CreateForm({ id = null }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setData((prevData) => ({
-      ...prevData,
-      price: parseFloat(prevData.price),
-      stock: parseInt(prevData.stock),
-    }));
+    const parsedData = {
+      ...data,
+      price: parseFloat(data.price),
+      stock: parseInt(data.stock),
+    };
 
-    if (!data.name || !data.slug || !data.description) {
+    if (!parsedData.name || !parsedData.slug || !parsedData.description) {
       toast.error("Completá todos los campos", {
         position: "top-right",
         autoClose: 3000,
@@ -36,7 +36,7 @@ export function CreateForm({ id = null }) {
       return;
     }
 
-    if (parseFloat(data.price) <= 0 || parseInt(data.stock <= 0)) {
+    if (parsedData.price <= 0 || parsedData.stock <= 0) {
       toast.error("El producto y stock deben ser mayores a 0", {
         position: "top-right",
         autoClose: 3000,
@@ -47,8 +47,8 @@ export function CreateForm({ id = null }) {
     }
 
     if (
-      data.image &&
-      !/^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp))$/.test(data.image)
+      parsedData.image &&
+      !/^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp))$/.test(parsedData.image)
     ) {
       toast.error("Ingresá una url de imagen válida", {
         position: "top-right",
@@ -67,7 +67,7 @@ export function CreateForm({ id = null }) {
     const response = await fetch(url, {
       method,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify(parsedData),
     });
 
     if (!response.ok) {
@@ -80,7 +80,7 @@ export function CreateForm({ id = null }) {
       return;
     }
 
-    toast.success(data.name + " creado/a con éxito", {
+    toast.success(`${parsedData.name} creado/a con éxito`, {
       position: "top-right",
       autoClose: 3000,
       transition: Bounce,

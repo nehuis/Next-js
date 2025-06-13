@@ -78,7 +78,9 @@ export function ProductsTable({ products }) {
                   {product.slug}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  ${product.price?.toFixed(2)}
+                  {typeof product.price === "number"
+                    ? `$${product.price.toFixed(2)}`
+                    : `$${Number(product.price).toFixed(2)}`}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                   {product.stock}
