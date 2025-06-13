@@ -22,6 +22,12 @@ export function ProductsTable({ products }) {
       setFilteredProducts((prev) =>
         prev.filter((product) => product.id !== id)
       );
+      toast.success("Producto eliminado", {
+        position: "top-right",
+        autoClose: 3000,
+        transition: Bounce,
+        theme: "colored",
+      });
     } else {
       console.error("Error deleting product:", result.error);
     }
