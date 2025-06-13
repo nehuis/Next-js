@@ -2,6 +2,7 @@
 
 import { handleChange } from "@/utils/handleChange";
 import { useEffect, useState } from "react";
+import { toast, Bounce } from "react-toastify";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
@@ -26,12 +27,22 @@ export function CreateForm({ id = null }) {
     }));
 
     if (!data.name || !data.slug || !data.description) {
-      alert("Por favor, completa todos los campos obligatorios");
+      toast.error("Completá todos los campos", {
+        position: "top-right",
+        autoClose: 3000,
+        transition: Bounce,
+        theme: "colored",
+      });
       return;
     }
 
-    if (parseFloat(data.price) < 0 || parseInt(data.stock < 0)) {
-      alert("El precio y el stock deben ser mayores a 0");
+    if (parseFloat(data.price) <= 0 || parseInt(data.stock <= 0)) {
+      toast.error("El producto y stock deben ser mayores a 0", {
+        position: "top-right",
+        autoClose: 3000,
+        transition: Bounce,
+        theme: "colored",
+      });
       return;
     }
 
@@ -39,7 +50,12 @@ export function CreateForm({ id = null }) {
       data.image &&
       !/^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp))$/.test(data.image)
     ) {
-      alert("Por favor, ingresa una URL de imagen válida");
+      toast.error("Ingresá una url de imagen válida", {
+        position: "top-right",
+        autoClose: 3000,
+        transition: Bounce,
+        theme: "colored",
+      });
       return;
     }
 
@@ -55,13 +71,21 @@ export function CreateForm({ id = null }) {
     });
 
     if (!response.ok) {
-      const error = await response.json();
-      console.error("Error:", error);
+      toast.error("Error al crear el producto", {
+        position: "top-right",
+        autoClose: 3000,
+        transition: Bounce,
+        theme: "colored",
+      });
       return;
     }
 
-    const result = await response.json();
-    console.log("Success:", result);
+    toast.success("Producto creado" + data.name, {
+      position: "top-right",
+      autoClose: 3000,
+      transition: Bounce,
+      theme: "colored",
+    });
 
     if (!id) {
       setData({

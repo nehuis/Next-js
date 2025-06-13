@@ -62,9 +62,7 @@ export function ProductsTable({ products }) {
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-          {console.log("Productos filtrados:", filteredProducts)}
           {filteredProducts.map((product) => {
-            console.log("Producto individual:", product);
             return (
               <tr key={product.id}>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
